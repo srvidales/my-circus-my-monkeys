@@ -9,6 +9,10 @@ const Database = require('./config/Database');
 const { Console } = require('console');
 const Menu = require('./lib/Menu');
 
+const CONS_CTRL_CHAR = `\x1b`;
+const CONS_ANSI_RED = '[31m';
+const CONS_RESET_ALL = '[0m';
+
 async function viewAllEmployees() {
     const allEmployees = await Query.dbSelectAllEmployees();
     console.table(allEmployees);
@@ -45,13 +49,8 @@ async function addDepartment() {
 }
 
 async function displayBanner() {
-    try {
-        const result = await figletPromise("Employee Tracker");
-        console.log(result);
-    } catch (err) {
-        console.log("Something went wrong...");
-        console.dir(err);
-    }
+    const result = await figletPromise("Employee Tracker");
+    console.log(result);
 }
 
 async function evaluateAnswers(choice) {
@@ -89,6 +88,7 @@ async function startApp() {
     try {
         Database.createConnection();
         await displayBanner();
+        // let a = 1n / 0n;
 
         let done = false;
         do {
@@ -96,7 +96,8 @@ async function startApp() {
             await evaluateAnswers(choice);
             done = choice === 8;
         } while (!done);
-
+    } catch (err) {
+        console.error(`${CONS_CTRL_CHAR}${CONS_ANSI_RED}An unexpected error has occured. Exiting.${CONS_CTRL_CHAR}${CONS_RESET_ALL}`);
     } finally {
         Database.closeConnection();
     }
