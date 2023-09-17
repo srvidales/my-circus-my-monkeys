@@ -21,11 +21,13 @@ async function viewAllEmployees() {
 async function addEmployee() {
     const [firstName, lastName, roleId, managerId] = await Menu.displayAddEmployeeMenu();
     Query.dbInsertNewEmployee(firstName, lastName, roleId, managerId);
+    console.log(`Added ${firstName} ${lastName} to the database`);
 }
 
 async function updateEmployeeRole() {
     const [employeeId, roleId] = await Menu.displayUpdateEmployeeRoleMenu();
     Query.dbUpdateEmployeeRole(employeeId, roleId);
+    console.log(`Updated employee's role.`)
 }
 
 async function viewAllRoles() {
@@ -36,16 +38,19 @@ async function viewAllRoles() {
 async function addRole() {
     const [title, salary, departmentId] = await Menu.displayAddRoleMenu();
     Query.dbInsertNewRole(title, salary, departmentId);
+    console.log(`Added ${title} to the database`)
 }
 
 async function viewAllDepartments() {
     const departments = await Query.dbSelectAllDepartments();
     console.table(departments);
+
 }
 
 async function addDepartment() {
     const name = await Menu.displayAddDepartmentMenu();
     Query.dbInsertNewDepartment(name);
+    console.log(`Added ${name} to the database`)
 }
 
 async function displayBanner() {
