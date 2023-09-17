@@ -4,8 +4,7 @@ DROP
 CREATE
     DATABASE circus_db;
 
-USE
-    circus_db;
+USE circus_db;
 
 CREATE TABLE department
 (
