@@ -1,4 +1,4 @@
-# My Circus, my monkeys CMS
+# My Circus, My Monkeys CMS
   
 ## Description
 CMS CLI that allows you to manage a company's employee database with useful features such as creating/viewing departments, roles and employees among others. The CMS uses mySQL as the backend database and inquirer to get user input.
