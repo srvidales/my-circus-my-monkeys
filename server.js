@@ -93,7 +93,6 @@ async function startApp() {
     try {
         Database.createConnection();
         await displayBanner();
-        // let a = 1n / 0n;
 
         let done = false;
         do {
